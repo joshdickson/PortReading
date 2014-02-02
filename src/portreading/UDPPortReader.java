@@ -51,6 +51,7 @@ public class UDPPortReader {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
+		args = "12050 1472 hex".split(" ");
 		if(args.length < 3 || args.length > 4) {
 			System.out.println("Usage: portNumber bufferSize hex/ascii (optional)delimiter");
 			System.exit(1);
@@ -97,6 +98,7 @@ public class UDPPortReader {
     		DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
     		while(true) {
     			dsocket.receive(packet);
+    			System.out.println(packet.getAddress());
     			byte[] byteData = packet.getData(); 
     			printData(byteData);			
     			packet.setLength(buffer.length);
